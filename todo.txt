@@ -1,3 +1,4 @@
 - add ajax to subscribe to newsletter in products app 
 - also add newsletter to about app 
 - description in the post_list and post_detail
+- shop and wishlist
