@@ -1,0 +1,110 @@
+   {% extends 'base.html' %}
+
+   {% load static  %}
+
+
+   {% block content  %}
+
+
+   <div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
+       <div class="container">
+           <div class="row no-gutters slider-text align-items-center justify-content-center">
+               <div class="col-md-9 ftco-animate text-center">
+                   <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
+                   <h1 class="mb-0 bread">Blog</h1>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <section class="ftco-section ftco-degree-bg">
+       <div class="container">
+           <div class="row">
+               <div class="col-lg-8 ftco-animate">
+                   <div class="row">
+                       {% for post in  object_list %}
+                       <div class="col-md-12 d-flex ftco-animate">
+                           <div class="blog-entry align-self-stretch d-md-flex">
+                               <a href="{{post.get_absolute_url }}" class="block-20"
+                                   style="background-image: url('{{post.image.url}}');">
+                               </a>
+                               <div class="text d-block pl-md-4">
+                                   <div class="meta mb-3">
+                                       <div><a href="#">{{ post.created_at|date:'F j Y'}}</a></div>
+                                       <div><a href="#">{{ post.author }}</a></div>
+                                       <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                                   </div>
+                                   <h3 class="heading"><a href="{{post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                   <p><a href="{{post.get_absolute_url }}" class="btn btn-primary py-2 px-3">Read more</a></p>
+                               </div>
+                           </div>
+                       </div>
+
+                       {% endfor %}
+                    
+                   </div>
+               </div> <!-- .col-md-8 -->
+               <div class="col-lg-4 sidebar ftco-animate">
+                   <div class="sidebar-box">
+                       <form action="{% url 'blog:post_list' %}" method='GET' class="search-form">
+                           <div class="form-group">
+                               <span class="icon ion-ios-search"></span>
+                               <input type="text" name='q' class="form-control" placeholder="Search...">
+                           </div>
+                       </form>
+                   </div>
+                   <div class="sidebar-box ftco-animate">
+                       <h3 class="heading">Categories</h3>
+                       <ul class="categories">
+                           {% for category in  categories %}
+
+                           <li><a href="#">{{ category.name }}<span>{{category.post_count}}</span></a></li>
+                           {% endfor %}
+                       </ul>
+                   </div>
+
+                   <div class="sidebar-box ftco-animate">
+                       <h3 class="heading">Recent Blog</h3>
+                       {% for post in recent_posts  %}
+                       <div class="block-21 mb-4 d-flex">
+                           <a class="blog-img mr-4" style="background-image: url({{ post.image.url}});"></a>
+                           <div class="text">
+                               <h3 class="heading-1"><a href="#">{{ post }}</a></h3>
+                               <div class="meta">
+                                   <div><a href="#"><span class="icon-calendar"></span> {{ post.created_at|date:'F j Y'}}</a></div>
+                                   <div><a href="#"><span class="icon-person"></span> {{post.author }}</a></div>
+                             
+                               </div>
+                           </div>
+                       </div>
+                       {% endfor %}
+                   
+                   </div>
+
+                   <div class="sidebar-box ftco-animate">
+                       <h3 class="heading">Tag Cloud</h3>
+                       <div class="tagcloud">
+                           {% for tag in  tags %}
+
+                           <a href="#" class="tag-cloud-link">{{ tag }}</a>
+                           {% endfor %}
+                      
+                          
+                       </div>
+                   </div>
+
+                   <div class="sidebar-box ftco-animate">
+                       <h3 class="heading">Paragraph</h3>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
+                           voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur
+                           similique, inventore eos fugit cupiditate numquam!</p>
+                   </div>
+               </div>
+
+           </div>
+       </div>
+   </section> <!-- .section -->
+
+
+
+   {% endblock content %}

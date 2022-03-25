@@ -42,12 +42,17 @@ INSTALLED_APPS = [
 
     'products',
     'about',
+    'blog',
 
     # 'home',
     # 'shop',
     # 'blog',
     # 'about',
     # 'contact',
+
+    # todo 
+    "taggit",
+
 
 ]
 
