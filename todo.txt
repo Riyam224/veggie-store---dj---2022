@@ -1,0 +1,2 @@
+- add ajax to subscribe to newsletter in products app 
+- also add newsletter to about app 

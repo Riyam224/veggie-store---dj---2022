@@ -90,7 +90,7 @@ class Team(models.Model):
 
 class Newsletter(models.Model):
     email = models.EmailField(_("email"), max_length=254)
-    created_at = models.DateTimeField(_("created at"), default=timezone.now())
+    created_at = models.DateTimeField(_("created at"),auto_now_add=True)
 
     
 
